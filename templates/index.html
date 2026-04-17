@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ studio_name }} | Zumba Classes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <nav class="topbar">
+          <div>
+            <p class="eyebrow">Cloud-ready Python app</p>
+            <h1>{{ studio_name }}</h1>
+          </div>
+          <a class="pill-link" href="{{ url_for('admin_dashboard') }}">Automation Dashboard</a>
+        </nav>
+        <div class="hero-grid">
+          <section class="hero-copy">
+            <p class="badge">Dance. Sweat. Repeat.</p>
+            <h2>Zumba classes that feel like a weekend party and a fitness reset.</h2>
+            <p class="lead">
+              High-energy coaching, beginner-friendly routines, and automated lead
+              follow-ups so your studio stays responsive even while class is in motion.
+            </p>
+            <div class="hero-actions">
+              <a class="primary-btn" href="#booking">Book a trial class</a>
+              <a class="secondary-btn" href="#schedule">See the class schedule</a>
+            </div>
+            <div class="hero-stats">
+              <article>
+                <strong>3</strong>
+                <span>Signature weekly classes</span>
+              </article>
+              <article>
+                <strong>{{ booking_count }}</strong>
+                <span>Bookings captured so far</span>
+              </article>
+              <article>
+                <strong>24/7</strong>
+                <span>Automation support flow</span>
+              </article>
+            </div>
+          </section>
+          <section class="hero-card">
+            <p class="card-label">Why members stay</p>
+            <ul>
+              <li>Guided warm-ups and low-pressure first sessions</li>
+              <li>Latin, Bollywood, and cardio fusion playlists</li>
+              <li>Automated reminders and quick callback tracking</li>
+            </ul>
+            <blockquote>
+              "The easiest way to fall in love with movement again."
+            </blockquote>
+          </section>
+        </div>
+      </header>
+
+      <main>
+        <section class="section" id="schedule">
+          <div class="section-heading">
+            <p class="eyebrow">Weekly rhythm</p>
+            <h3>Class schedule</h3>
+          </div>
+          <div class="class-grid">
+            {% for item in classes %}
+            <article class="class-card">
+              <p class="class-day">{{ item.day }}</p>
+              <h4>{{ item.title }}</h4>
+              <p>{{ item.time }}</p>
+              <p>{{ item.level }}</p>
+              <span>Coach {{ item.coach }}</span>
+            </article>
+            {% endfor %}
+          </div>
+        </section>
+
+        <section class="section spotlight">
+          <div>
+            <p class="eyebrow">Built for growth</p>
+            <h3>Automation features inside the app</h3>
+          </div>
+          <div class="feature-grid">
+            <article>
+              <h4>Lead follow-up queue</h4>
+              <p>New bookings are picked up by a background scheduler and marked for rapid callback.</p>
+            </article>
+            <article>
+              <h4>Schedule digest job</h4>
+              <p>The app periodically records class schedule summaries for internal review and widgets.</p>
+            </article>
+            <article>
+              <h4>Cloud deployment ready</h4>
+              <p>Includes production dependencies and service config for a Python cloud host.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section booking-section" id="booking">
+          <div class="section-heading">
+            <p class="eyebrow">Reserve your place</p>
+            <h3>Book a trial class</h3>
+          </div>
+
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              <div class="flash-stack">
+                {% for category, message in messages %}
+                  <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+              </div>
+            {% endif %}
+          {% endwith %}
+
+          <form class="booking-form" method="post" action="{{ url_for('book_class') }}">
+            <label>
+              Full name
+              <input type="text" name="name" placeholder="Your name" required />
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" placeholder="you@example.com" required />
+            </label>
+            <label>
+              Phone
+              <input type="tel" name="phone" placeholder="+91" required />
+            </label>
+            <label>
+              Preferred class
+              <select name="class_name" required>
+                <option value="">Choose a class</option>
+                {% for item in classes %}
+                <option value="{{ item.title }}">{{ item.title }}</option>
+                {% endfor %}
+              </select>
+            </label>
+            <label>
+              Preferred date
+              <input type="date" name="preferred_date" required />
+            </label>
+            <label class="full-span">
+              Goals or notes
+              <textarea
+                name="message"
+                rows="4"
+                placeholder="Tell us if you're new, returning, or training for an event."
+              ></textarea>
+            </label>
+            <button class="primary-btn full-span" type="submit">Request my trial</button>
+          </form>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: zumba-classes-site
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    healthCheckPath: /healthz
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.4
+      - key: SECRET_KEY
+        generateValue: true
+      - key: STUDIO_NAME
+        value: Pulse & Rhythm Zumba
+      - key: DATABASE_PATH
+        value: /opt/render/project/src/zumba.db

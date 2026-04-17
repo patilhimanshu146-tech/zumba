@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ studio_name }} | Automation Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <div class="page-shell admin-shell">
+      <header class="dashboard-header">
+        <div>
+          <p class="eyebrow">Studio operations</p>
+          <h1>Automation dashboard</h1>
+        </div>
+        <a class="secondary-btn" href="{{ url_for('home') }}">Back to website</a>
+      </header>
+
+      <section class="stats-grid">
+        <article><strong>{{ stats.total_bookings }}</strong><span>Total bookings</span></article>
+        <article><strong>{{ stats.new_leads }}</strong><span>New leads</span></article>
+        <article><strong>{{ stats.queued_followups }}</strong><span>Queued follow-ups</span></article>
+        <article><strong>{{ stats.automation_runs }}</strong><span>Automation runs</span></article>
+      </section>
+
+      <section class="dashboard-grid">
+        <div class="panel">
+          <div class="section-heading">
+            <p class="eyebrow">Latest bookings</p>
+            <h3>Recent class requests</h3>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Class</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for booking in bookings %}
+                <tr>
+                  <td>#{{ booking.id }}</td>
+                  <td>{{ booking.name }}<br /><small>{{ booking.email }}</small></td>
+                  <td>{{ booking.class_name }}</td>
+                  <td>{{ booking.preferred_date }}</td>
+                  <td>{{ booking.status }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                  <td colspan="5">No bookings yet.</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="section-heading">
+            <p class="eyebrow">Background jobs</p>
+            <h3>Automation activity</h3>
+          </div>
+          <div class="timeline">
+            {% for run in automation_runs %}
+            <article>
+              <p class="timeline-title">{{ run.job_name }}</p>
+              <p>{{ run.details }}</p>
+              <span>{{ run.created_at }}</span>
+            </article>
+            {% else %}
+            <article>
+              <p class="timeline-title">No automation activity yet</p>
+              <p>The scheduler will populate this after the first run.</p>
+            </article>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
