@@ -26,12 +26,11 @@
         </nav>
         <div class="hero-grid">
           <section class="hero-copy">
-            <p class="badge">Structured classes. Elevated energy.</p>
-            <h2>Dance fitness with the polish of a premium studio and the energy of a live floor.</h2>
+            <p class="badge">Move with rhythm</p>
+            <h2>Zumba classes with beautiful energy, strong rhythm, and a studio feel.</h2>
             <p class="lead">
-              Pulse & Rhythm is built for members who want movement that feels
-              intentional, energising, and well run. From first trial booking to
-              class follow-up, every part of the experience is designed to feel smooth.
+              High-energy sessions, confident coaching, and a space that makes
+              movement feel effortless.
             </p>
             <div class="hero-actions">
               <a class="primary-btn" href="#booking">Book a trial class</a>
@@ -44,11 +43,11 @@
               </article>
               <article>
                 <strong>{{ booking_count }}</strong>
-                <span>Trial bookings captured</span>
+                <span>Trial bookings</span>
               </article>
               <article>
                 <strong>{{ upcoming_trials }}</strong>
-                <span>Upcoming trial sessions</span>
+                <span>Upcoming sessions</span>
               </article>
             </div>
           </section>
@@ -66,11 +65,11 @@
               />
             </div>
             <div class="hero-card">
-              <p class="card-label">What defines the studio</p>
+              <p class="card-label">Studio feel</p>
               <ul>
-                <li>Small-group coaching with clear class levels and capped attendance</li>
-                <li>Curated playlists that balance Latin, cardio-pop, and Bollywood energy</li>
-                <li>Fast follow-ups, reminder prep, and booking oversight built into the workflow</li>
+                <li>Bold playlists</li>
+                <li>Beautiful movement</li>
+                <li>Feel-good cardio</li>
               </ul>
             </div>
           </section>
@@ -80,21 +79,18 @@
       <main>
         <section class="section intro-strip">
           <div class="intro-card">
-            <p class="eyebrow">Member experience</p>
-            <h3>First-time friendly, professionally run, and built for consistency.</h3>
+            <p class="eyebrow">The mood</p>
+            <h3>Elegant, uplifting, and full of movement.</h3>
           </div>
           <div class="intro-card">
-            <p>
-              Expect guided entry into every class, clear pacing from warm-up to peak cardio,
-              and a studio workflow that respects both your time and your motivation.
-            </p>
+            <p>A little sweat, a lot of rhythm, and the kind of class you look forward to all week.</p>
           </div>
         </section>
 
         <section class="section" id="schedule">
           <div class="section-heading">
-            <p class="eyebrow">Weekly rhythm</p>
-            <h3>Weekly class schedule</h3>
+            <p class="eyebrow">Weekly schedule</p>
+            <h3>Find your class.</h3>
           </div>
           <div class="class-grid">
             {% for item in classes %}
@@ -111,8 +107,8 @@
 
         <section class="section vibe-section">
           <div class="section-heading">
-            <p class="eyebrow">Studio atmosphere</p>
-            <h3>A visual feel for the room, the lighting, and the pace.</h3>
+            <p class="eyebrow">Gallery</p>
+            <h3>The feel of the studio.</h3>
           </div>
           <div class="gallery-grid">
             <article class="gallery-card tall">
@@ -136,51 +132,23 @@
           </div>
         </section>
 
-        <section class="section operations-section">
-          <div class="section-heading">
-            <p class="eyebrow">Studio operations</p>
-            <h3>Automations chosen for real follow-through, not just decoration.</h3>
-          </div>
-          <div class="operations-grid">
-            <article class="operation-card">
-              <p class="card-label">Lead response</p>
-              <h4>New enquiries are triaged automatically</h4>
-              <p>Every booking is queued for follow-up so trial requests do not get buried after classes end.</p>
-            </article>
-            <article class="operation-card">
-              <p class="card-label">Reminder prep</p>
-              <h4>Upcoming classes are surfaced before they happen</h4>
-              <p>Trial sessions in the next 24 hours are grouped for reminder prep and front-desk planning.</p>
-            </article>
-            <article class="operation-card">
-              <p class="card-label">Capacity watch</p>
-              <h4>Popular classes are monitored for demand</h4>
-              <p>Capacity snapshots help the studio spot when a time slot needs a waitlist or second batch.</p>
-            </article>
-            <article class="operation-card metric-card">
-              <strong>{{ automation_count }}</strong>
-              <span>Automation events logged by the studio system</span>
-            </article>
-          </div>
-        </section>
-
         <section class="section spotlight">
           <div>
-            <p class="eyebrow">Studio systems</p>
-            <h3>Behind the scenes, every detail stays organized and visible.</h3>
+            <p class="eyebrow">Why people love it</p>
+            <h3>Simple reasons to keep coming back.</h3>
           </div>
           <div class="feature-grid">
             <article>
-              <h4>Lead follow-up queue</h4>
-              <p>New enquiries are tagged fast so the team can call back with context, not guesswork.</p>
+              <h4>Beautiful playlists</h4>
+              <p>Every class feels lively, polished, and easy to move with.</p>
             </article>
             <article>
-              <h4>Reminder-ready calendar</h4>
-              <p>The studio can see upcoming trials and prepare reminders before members forget their first visit.</p>
+              <h4>Supportive coaching</h4>
+              <p>Friendly guidance that helps beginners feel comfortable from the first session.</p>
             </article>
             <article>
-              <h4>Hosted operations dashboard</h4>
-              <p>Bookings, admin access, and automation logs are structured like a live business tool, not a demo.</p>
+              <h4>Feel-good energy</h4>
+              <p>Cardio that feels more like a release than a routine.</p>
             </article>
           </div>
         </section>
@@ -204,10 +172,7 @@
           <form class="booking-form" method="post" action="{{ url_for('book_class') }}">
             <div class="form-intro full-span">
               <p class="card-label">Trial booking</p>
-              <p>
-                Leave your details and preferred class. The studio workflow will queue your request,
-                prepare reminders, and help staff follow up quickly.
-              </p>
+              <p>Your first class starts here.</p>
             </div>
             <label>
               Full name
@@ -239,7 +204,7 @@
               <textarea
                 name="message"
                 rows="4"
-                placeholder="Tell us if you're new, returning, or training for an event."
+                placeholder="Anything you'd like us to know"
               ></textarea>
             </label>
             <button class="primary-btn full-span" type="submit">Request my trial</button>
