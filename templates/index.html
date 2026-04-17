@@ -17,6 +17,7 @@
       <header class="hero">
         <nav class="topbar">
           <div>
+            <p class="eyebrow">After-dark cardio studio</p>
             <h1>{{ studio_name }}</h1>
           </div>
           <a class="pill-link" href="{{ url_for('admin_login') }}">
@@ -25,11 +26,12 @@
         </nav>
         <div class="hero-grid">
           <section class="hero-copy">
-            <p class="badge">Dance. Sweat. Repeat.</p>
-            <h2>Zumba classes that feel like a weekend party and a fitness reset.</h2>
+            <p class="badge">Dance. Sweat. Glow.</p>
+            <h2>Electric Zumba nights with bold beats, sweat drops, and real studio energy.</h2>
             <p class="lead">
-              High-energy coaching, beginner-friendly routines, and automated lead
-              follow-ups so your studio stays responsive even while class is in motion.
+              Step into a darker, moodier workout space built around rhythm,
+              movement, and confidence. Fast-paced classes, cinematic lighting,
+              and a booking flow that keeps your studio running smoothly.
             </p>
             <div class="hero-actions">
               <a class="primary-btn" href="#booking">Book a trial class</a>
@@ -50,16 +52,27 @@
               </article>
             </div>
           </section>
-          <section class="hero-card">
-            <p class="card-label">Why members stay</p>
-            <ul>
-              <li>Guided warm-ups and low-pressure first sessions</li>
-              <li>Latin, Bollywood, and cardio fusion playlists</li>
-              <li>Automated reminders and quick callback tracking</li>
-            </ul>
-            <blockquote>
-              "The easiest way to fall in love with movement again."
-            </blockquote>
+          <section class="hero-visual">
+            <div class="hero-photo-stack">
+              <img
+                class="hero-main-photo"
+                src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1200&q=80"
+                alt="Energetic Zumba group class"
+              />
+              <img
+                class="hero-floating-photo"
+                src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=900&q=80"
+                alt="Dance fitness in colorful lighting"
+              />
+            </div>
+            <div class="hero-card">
+              <p class="card-label">Why members stay</p>
+              <ul>
+                <li>Low-pressure first sessions with high-energy coaching</li>
+                <li>Latin, cardio-pop, Bollywood, and club-style playlists</li>
+                <li>Fast follow-ups and studio ops that stay organized</li>
+              </ul>
+            </div>
           </section>
         </div>
       </header>
@@ -83,23 +96,50 @@
           </div>
         </section>
 
+        <section class="section vibe-section">
+          <div class="section-heading">
+            <p class="eyebrow">Studio gallery</p>
+            <h3>The feel before the first beat drops</h3>
+          </div>
+          <div class="gallery-grid">
+            <article class="gallery-card tall">
+              <img
+                src="https://images.unsplash.com/photo-1524594157360-3bbf8a8b11d7?auto=format&fit=crop&w=1200&q=80"
+                alt="Dance class under moody lighting"
+              />
+            </article>
+            <article class="gallery-card">
+              <img
+                src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=80"
+                alt="Cardio movement and stretch"
+              />
+            </article>
+            <article class="gallery-card">
+              <img
+                src="https://images.unsplash.com/photo-1517960413843-0aee8e2b3285?auto=format&fit=crop&w=1200&q=80"
+                alt="Friends enjoying a fitness class"
+              />
+            </article>
+          </div>
+        </section>
+
         <section class="section spotlight">
           <div>
-            <p class="eyebrow">Built for growth</p>
-            <h3>Automation features inside the app</h3>
+            <p class="eyebrow">Studio systems</p>
+            <h3>Behind the scenes, the rhythm stays organized</h3>
           </div>
           <div class="feature-grid">
             <article>
               <h4>Lead follow-up queue</h4>
-              <p>New bookings are picked up by a background scheduler and marked for rapid callback.</p>
+              <p>New bookings are picked up quickly so no trial request sits cold after class hours.</p>
             </article>
             <article>
-              <h4>Schedule digest job</h4>
-              <p>The app periodically records class schedule summaries for internal review and widgets.</p>
+              <h4>Class schedule digest</h4>
+              <p>Recurring automation keeps your latest class rhythm visible for internal ops and planning.</p>
             </article>
             <article>
-              <h4>Cloud deployment ready</h4>
-              <p>Includes production dependencies and service config for a Python cloud host.</p>
+              <h4>Always-on website flow</h4>
+              <p>Bookings, admin access, and dashboard tools are set up for a live hosted studio experience.</p>
             </article>
           </div>
         </section>
