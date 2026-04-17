@@ -17,7 +17,7 @@
       <header class="hero">
         <nav class="topbar">
           <div>
-            <p class="eyebrow">After-dark cardio studio</p>
+            <p class="eyebrow">Boutique movement studio</p>
             <h1>{{ studio_name }}</h1>
           </div>
           <a class="pill-link" href="{{ url_for('admin_login') }}">
@@ -26,12 +26,12 @@
         </nav>
         <div class="hero-grid">
           <section class="hero-copy">
-            <p class="badge">Boutique dance fitness studio</p>
-            <h2>Zumba classes designed with club energy and professional studio structure.</h2>
+            <p class="badge">Structured classes. Elevated energy.</p>
+            <h2>Dance fitness with the polish of a premium studio and the energy of a live floor.</h2>
             <p class="lead">
-              Pulse & Rhythm blends polished coaching, smart scheduling, and a
-              premium class experience. The site is built to convert visitors
-              into members while keeping studio operations clean behind the scenes.
+              Pulse & Rhythm is built for members who want movement that feels
+              intentional, energising, and well run. From first trial booking to
+              class follow-up, every part of the experience is designed to feel smooth.
             </p>
             <div class="hero-actions">
               <a class="primary-btn" href="#booking">Book a trial class</a>
@@ -40,7 +40,7 @@
             <div class="hero-stats">
               <article>
                 <strong>3</strong>
-                <span>Signature weekly classes</span>
+                <span>Signature weekly formats</span>
               </article>
               <article>
                 <strong>{{ booking_count }}</strong>
@@ -57,16 +57,16 @@
               <img
                 class="hero-main-photo"
                 src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1200&q=80"
-                alt="Energetic Zumba group class"
+                alt="Premium group dance fitness class"
               />
               <img
                 class="hero-floating-photo"
                 src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=900&q=80"
-                alt="Dance fitness in colorful lighting"
+                alt="Studio movement session"
               />
             </div>
             <div class="hero-card">
-              <p class="card-label">Studio standards</p>
+              <p class="card-label">What defines the studio</p>
               <ul>
                 <li>Small-group coaching with clear class levels and capped attendance</li>
                 <li>Curated playlists that balance Latin, cardio-pop, and Bollywood energy</li>
@@ -78,10 +78,23 @@
       </header>
 
       <main>
+        <section class="section intro-strip">
+          <div class="intro-card">
+            <p class="eyebrow">Member experience</p>
+            <h3>First-time friendly, professionally run, and built for consistency.</h3>
+          </div>
+          <div class="intro-card">
+            <p>
+              Expect guided entry into every class, clear pacing from warm-up to peak cardio,
+              and a studio workflow that respects both your time and your motivation.
+            </p>
+          </div>
+        </section>
+
         <section class="section" id="schedule">
           <div class="section-heading">
             <p class="eyebrow">Weekly rhythm</p>
-            <h3>Class schedule</h3>
+            <h3>Weekly class schedule</h3>
           </div>
           <div class="class-grid">
             {% for item in classes %}
@@ -98,8 +111,8 @@
 
         <section class="section vibe-section">
           <div class="section-heading">
-            <p class="eyebrow">Studio gallery</p>
-            <h3>The feel before the first beat drops</h3>
+            <p class="eyebrow">Studio atmosphere</p>
+            <h3>A visual feel for the room, the lighting, and the pace.</h3>
           </div>
           <div class="gallery-grid">
             <article class="gallery-card tall">
@@ -125,8 +138,8 @@
 
         <section class="section operations-section">
           <div class="section-heading">
-            <p class="eyebrow">Operations</p>
-            <h3>Automations that support a real studio workflow</h3>
+            <p class="eyebrow">Studio operations</p>
+            <h3>Automations chosen for real follow-through, not just decoration.</h3>
           </div>
           <div class="operations-grid">
             <article class="operation-card">
@@ -154,7 +167,7 @@
         <section class="section spotlight">
           <div>
             <p class="eyebrow">Studio systems</p>
-            <h3>Behind the scenes, every detail stays organized</h3>
+            <h3>Behind the scenes, every detail stays organized and visible.</h3>
           </div>
           <div class="feature-grid">
             <article>
@@ -189,6 +202,13 @@
           {% endwith %}
 
           <form class="booking-form" method="post" action="{{ url_for('book_class') }}">
+            <div class="form-intro full-span">
+              <p class="card-label">Trial booking</p>
+              <p>
+                Leave your details and preferred class. The studio workflow will queue your request,
+                prepare reminders, and help staff follow up quickly.
+              </p>
+            </div>
             <label>
               Full name
               <input type="text" name="name" placeholder="Your name" required />
