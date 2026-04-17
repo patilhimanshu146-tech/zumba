@@ -27,6 +27,7 @@ CLASS_SCHEDULE = [
         "time": "6:30 AM",
         "coach": "Anika",
         "level": "All levels",
+        "capacity": 18,
     },
     {
         "title": "Power Pulse Zumba",
@@ -34,6 +35,7 @@ CLASS_SCHEDULE = [
         "time": "7:00 PM",
         "coach": "Rhea",
         "level": "Intermediate",
+        "capacity": 22,
     },
     {
         "title": "Weekend Fiesta Burn",
@@ -41,6 +43,7 @@ CLASS_SCHEDULE = [
         "time": "9:00 AM",
         "coach": "Maya",
         "level": "Beginner friendly",
+        "capacity": 24,
     },
 ]
 
@@ -170,6 +173,60 @@ def publish_schedule_digest(app: Flask) -> None:
     )
 
 
+def prepare_class_reminders(app: Flask) -> None:
+    start_date = datetime.now().date()
+    end_date = start_date + timedelta(days=1)
+    with closing(sqlite3.connect(app.config["DATABASE"])) as connection:
+        connection.row_factory = sqlite3.Row
+        rows = connection.execute(
+            """
+            SELECT id, name, class_name, preferred_date
+            FROM bookings
+            WHERE date(preferred_date) BETWEEN date(?) AND date(?)
+            ORDER BY preferred_date ASC, created_at ASC
+            """,
+            (start_date.isoformat(), end_date.isoformat()),
+        ).fetchall()
+
+    if not rows:
+        insert_automation_log(
+            app,
+            "Reminder Prep",
+            "No upcoming trial classes needed reminder prep in the next 24 hours.",
+        )
+        return
+
+    details = (
+        f"Prepared reminder list for {len(rows)} upcoming booking(s): "
+        + ", ".join(f"{row['name']} - {row['class_name']}" for row in rows[:5])
+    )
+    insert_automation_log(app, "Reminder Prep", details)
+
+
+def review_capacity_watch(app: Flask) -> None:
+    with closing(sqlite3.connect(app.config["DATABASE"])) as connection:
+        connection.row_factory = sqlite3.Row
+        classes = []
+        for schedule_item in CLASS_SCHEDULE:
+            total = connection.execute(
+                """
+                SELECT COUNT(*)
+                FROM bookings
+                WHERE class_name = ?
+                """,
+                (schedule_item["title"],),
+            ).fetchone()[0]
+            classes.append(
+                f"{schedule_item['title']}: {total}/{schedule_item['capacity']} booked"
+            )
+
+    insert_automation_log(
+        app,
+        "Capacity Watch",
+        "Capacity snapshot recorded. " + "; ".join(classes),
+    )
+
+
 def register_scheduler(app: Flask) -> None:
     scheduler = BackgroundScheduler(daemon=True, timezone="Asia/Kolkata")
 
@@ -187,6 +244,20 @@ def register_scheduler(app: Flask) -> None:
         id="schedule-digest",
         replace_existing=True,
     )
+    scheduler.add_job(
+        lambda: prepare_class_reminders(app),
+        trigger="interval",
+        hours=4,
+        id="reminder-prep",
+        replace_existing=True,
+    )
+    scheduler.add_job(
+        lambda: review_capacity_watch(app),
+        trigger="interval",
+        hours=8,
+        id="capacity-watch",
+        replace_existing=True,
+    )
     scheduler.start()
     app.scheduler = scheduler  # type: ignore[attr-defined]
 
@@ -199,10 +270,22 @@ def register_routes(app: Flask) -> None:
     def home():
         db = app.get_db()
         booking_count = db.execute("SELECT COUNT(*) FROM bookings").fetchone()[0]
+        automation_count = db.execute(
+            "SELECT COUNT(*) FROM automation_runs"
+        ).fetchone()[0]
+        upcoming_trials = db.execute(
+            """
+            SELECT COUNT(*)
+            FROM bookings
+            WHERE date(preferred_date) >= date('now')
+            """
+        ).fetchone()[0]
         return render_template(
             "index.html",
             classes=CLASS_SCHEDULE,
             booking_count=booking_count,
+            automation_count=automation_count,
+            upcoming_trials=upcoming_trials,
             studio_name=app.config["STUDIO_NAME"],
             admin_logged_in=admin_session_active(),
         )

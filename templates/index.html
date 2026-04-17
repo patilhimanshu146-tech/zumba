@@ -26,12 +26,12 @@
         </nav>
         <div class="hero-grid">
           <section class="hero-copy">
-            <p class="badge">Dance. Sweat. Glow.</p>
-            <h2>Electric Zumba nights with bold beats, sweat drops, and real studio energy.</h2>
+            <p class="badge">Boutique dance fitness studio</p>
+            <h2>Zumba classes designed with club energy and professional studio structure.</h2>
             <p class="lead">
-              Step into a darker, moodier workout space built around rhythm,
-              movement, and confidence. Fast-paced classes, cinematic lighting,
-              and a booking flow that keeps your studio running smoothly.
+              Pulse & Rhythm blends polished coaching, smart scheduling, and a
+              premium class experience. The site is built to convert visitors
+              into members while keeping studio operations clean behind the scenes.
             </p>
             <div class="hero-actions">
               <a class="primary-btn" href="#booking">Book a trial class</a>
@@ -44,11 +44,11 @@
               </article>
               <article>
                 <strong>{{ booking_count }}</strong>
-                <span>Bookings captured so far</span>
+                <span>Trial bookings captured</span>
               </article>
               <article>
-                <strong>24/7</strong>
-                <span>Automation support flow</span>
+                <strong>{{ upcoming_trials }}</strong>
+                <span>Upcoming trial sessions</span>
               </article>
             </div>
           </section>
@@ -66,11 +66,11 @@
               />
             </div>
             <div class="hero-card">
-              <p class="card-label">Why members stay</p>
+              <p class="card-label">Studio standards</p>
               <ul>
-                <li>Low-pressure first sessions with high-energy coaching</li>
-                <li>Latin, cardio-pop, Bollywood, and club-style playlists</li>
-                <li>Fast follow-ups and studio ops that stay organized</li>
+                <li>Small-group coaching with clear class levels and capped attendance</li>
+                <li>Curated playlists that balance Latin, cardio-pop, and Bollywood energy</li>
+                <li>Fast follow-ups, reminder prep, and booking oversight built into the workflow</li>
               </ul>
             </div>
           </section>
@@ -90,7 +90,7 @@
               <h4>{{ item.title }}</h4>
               <p>{{ item.time }}</p>
               <p>{{ item.level }}</p>
-              <span>Coach {{ item.coach }}</span>
+              <span>Coach {{ item.coach }} · {{ item.capacity }} spots</span>
             </article>
             {% endfor %}
           </div>
@@ -123,23 +123,51 @@
           </div>
         </section>
 
+        <section class="section operations-section">
+          <div class="section-heading">
+            <p class="eyebrow">Operations</p>
+            <h3>Automations that support a real studio workflow</h3>
+          </div>
+          <div class="operations-grid">
+            <article class="operation-card">
+              <p class="card-label">Lead response</p>
+              <h4>New enquiries are triaged automatically</h4>
+              <p>Every booking is queued for follow-up so trial requests do not get buried after classes end.</p>
+            </article>
+            <article class="operation-card">
+              <p class="card-label">Reminder prep</p>
+              <h4>Upcoming classes are surfaced before they happen</h4>
+              <p>Trial sessions in the next 24 hours are grouped for reminder prep and front-desk planning.</p>
+            </article>
+            <article class="operation-card">
+              <p class="card-label">Capacity watch</p>
+              <h4>Popular classes are monitored for demand</h4>
+              <p>Capacity snapshots help the studio spot when a time slot needs a waitlist or second batch.</p>
+            </article>
+            <article class="operation-card metric-card">
+              <strong>{{ automation_count }}</strong>
+              <span>Automation events logged by the studio system</span>
+            </article>
+          </div>
+        </section>
+
         <section class="section spotlight">
           <div>
             <p class="eyebrow">Studio systems</p>
-            <h3>Behind the scenes, the rhythm stays organized</h3>
+            <h3>Behind the scenes, every detail stays organized</h3>
           </div>
           <div class="feature-grid">
             <article>
               <h4>Lead follow-up queue</h4>
-              <p>New bookings are picked up quickly so no trial request sits cold after class hours.</p>
+              <p>New enquiries are tagged fast so the team can call back with context, not guesswork.</p>
             </article>
             <article>
-              <h4>Class schedule digest</h4>
-              <p>Recurring automation keeps your latest class rhythm visible for internal ops and planning.</p>
+              <h4>Reminder-ready calendar</h4>
+              <p>The studio can see upcoming trials and prepare reminders before members forget their first visit.</p>
             </article>
             <article>
-              <h4>Always-on website flow</h4>
-              <p>Bookings, admin access, and dashboard tools are set up for a live hosted studio experience.</p>
+              <h4>Hosted operations dashboard</h4>
+              <p>Bookings, admin access, and automation logs are structured like a live business tool, not a demo.</p>
             </article>
           </div>
         </section>
