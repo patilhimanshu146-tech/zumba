@@ -59,25 +59,31 @@
           {% endif %}
         </div>
 
-        <div class="panel">
+        <div class="panel visual-panel">
           <div class="section-heading">
-            <p class="eyebrow">Visitor access</p>
-            <h3>What everyone else sees</h3>
+            <p class="eyebrow">Studio mood</p>
+            <h3>Step into the energy</h3>
           </div>
           <p class="lead compact">
-            Non-admin users can still browse the Zumba website and book classes,
-            but they cannot open the automation dashboard.
+            Bright movement, warm lighting, and a little bit of celebration in
+            every session. The admin area stays private, but the brand experience
+            can still feel vibrant and inviting.
           </p>
-          <div class="feature-grid single-column">
-            <article>
-              <h4>Admin email</h4>
-              <p>{{ admin_email }}</p>
-            </article>
-            <article>
-              <h4>Visitor permissions</h4>
-              <p>Homepage, class schedule, and booking form only.</p>
-            </article>
+          <div class="photo-collage">
+            <img
+              src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=80"
+              alt="Group dance fitness class"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=900&q=80"
+              alt="Women dancing in a fitness studio"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=900&q=80"
+              alt="Energetic cardio dance movement"
+            />
           </div>
+          <p class="photo-note">Admin email configured for this site: {{ admin_email }}</p>
         </div>
       </section>
     </div>
