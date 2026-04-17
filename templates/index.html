@@ -17,10 +17,11 @@
       <header class="hero">
         <nav class="topbar">
           <div>
-            <p class="eyebrow">Cloud-ready Python app</p>
             <h1>{{ studio_name }}</h1>
           </div>
-          <a class="pill-link" href="{{ url_for('admin_dashboard') }}">Automation Dashboard</a>
+          <a class="pill-link" href="{{ url_for('admin_login') }}">
+            {% if admin_logged_in %}Open Dashboard{% else %}Staff Login{% endif %}
+          </a>
         </nav>
         <div class="hero-grid">
           <section class="hero-copy">

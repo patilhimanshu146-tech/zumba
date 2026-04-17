@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ studio_name }} | Staff Access</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <div class="page-shell admin-shell">
+      <header class="dashboard-header">
+        <div>
+          <p class="eyebrow">Staff access</p>
+          <h1>Admin sign in</h1>
+        </div>
+        <a class="secondary-btn" href="{{ url_for('home') }}">Back to website</a>
+      </header>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="flash-stack">
+            {% for category, message in messages %}
+              <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <section class="access-grid">
+        <div class="panel">
+          <div class="section-heading">
+            <p class="eyebrow">Restricted area</p>
+            <h3>Dashboard access</h3>
+          </div>
+          <p class="lead compact">
+            Sign in with the configured admin email to view bookings, automation
+            activity, and studio operations.
+          </p>
+          <form class="booking-form compact-form" method="post" action="{{ url_for('admin_login') }}">
+            <label class="full-span">
+              Email address
+              <input type="email" name="email" placeholder="Enter admin email" required />
+            </label>
+            <button class="primary-btn full-span" type="submit">Continue</button>
+          </form>
+          {% if admin_logged_in %}
+            <div class="inline-actions">
+              <a class="pill-link" href="{{ url_for('admin_dashboard') }}">Open dashboard</a>
+              <form method="post" action="{{ url_for('admin_logout') }}">
+                <button class="secondary-btn" type="submit">Log out</button>
+              </form>
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="panel">
+          <div class="section-heading">
+            <p class="eyebrow">Visitor access</p>
+            <h3>What everyone else sees</h3>
+          </div>
+          <p class="lead compact">
+            Non-admin users can still browse the Zumba website and book classes,
+            but they cannot open the automation dashboard.
+          </p>
+          <div class="feature-grid single-column">
+            <article>
+              <h4>Admin email</h4>
+              <p>{{ admin_email }}</p>
+            </article>
+            <article>
+              <h4>Visitor permissions</h4>
+              <p>Homepage, class schedule, and booking form only.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

@@ -5,7 +5,16 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 from apscheduler.schedulers.background import BackgroundScheduler
-from flask import Flask, flash, g, redirect, render_template, request, url_for
+from flask import (
+    Flask,
+    flash,
+    g,
+    redirect,
+    render_template,
+    request,
+    session,
+    url_for,
+)
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -43,6 +52,9 @@ def create_app() -> Flask:
     app.config["STUDIO_NAME"] = os.getenv("STUDIO_NAME", "Pulse & Rhythm Zumba")
     app.config["CONTACT_EMAIL"] = os.getenv("CONTACT_EMAIL", "hello@pulseandrhythm.com")
     app.config["CONTACT_PHONE"] = os.getenv("CONTACT_PHONE", "+91 98765 43210")
+    app.config["ADMIN_EMAIL"] = os.getenv(
+        "ADMIN_EMAIL", "patilhimanshu146@gmail.com"
+    )
     app.config["SCHEDULER_INTERVAL_SECONDS"] = int(
         os.getenv("SCHEDULER_INTERVAL_SECONDS", "120")
     )
@@ -180,6 +192,9 @@ def register_scheduler(app: Flask) -> None:
 
 
 def register_routes(app: Flask) -> None:
+    def admin_session_active() -> bool:
+        return session.get("admin_email") == app.config["ADMIN_EMAIL"]
+
     @app.route("/")
     def home():
         db = app.get_db()
@@ -189,6 +204,7 @@ def register_routes(app: Flask) -> None:
             classes=CLASS_SCHEDULE,
             booking_count=booking_count,
             studio_name=app.config["STUDIO_NAME"],
+            admin_logged_in=admin_session_active(),
         )
 
     @app.route("/healthz")
@@ -228,8 +244,31 @@ def register_routes(app: Flask) -> None:
         )
         return redirect(url_for("home"))
 
-    @app.route("/admin")
+    @app.route("/admin", methods=["GET", "POST"])
+    def admin_login():
+        if request.method == "POST":
+            email = request.form.get("email", "").strip().lower()
+            if email == app.config["ADMIN_EMAIL"].lower():
+                session["admin_email"] = email
+                flash("Admin access granted.", "success")
+                return redirect(url_for("admin_dashboard"))
+
+            session.pop("admin_email", None)
+            flash("This email has visitor access only.", "error")
+
+        return render_template(
+            "admin_login.html",
+            studio_name=app.config["STUDIO_NAME"],
+            admin_email=app.config["ADMIN_EMAIL"],
+            admin_logged_in=admin_session_active(),
+        )
+
+    @app.route("/admin/dashboard")
     def admin_dashboard():
+        if not admin_session_active():
+            flash("Please sign in with the admin email to open the dashboard.", "error")
+            return redirect(url_for("admin_login"))
+
         db = app.get_db()
         bookings = db.execute(
             """
@@ -266,6 +305,12 @@ def register_routes(app: Flask) -> None:
             stats=stats,
             studio_name=app.config["STUDIO_NAME"],
         )
+
+    @app.route("/admin/logout", methods=["POST"])
+    def admin_logout():
+        session.pop("admin_email", None)
+        flash("Admin session closed.", "success")
+        return redirect(url_for("admin_login"))
 
 
 app = create_app()

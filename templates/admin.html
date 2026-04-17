@@ -19,7 +19,12 @@
           <p class="eyebrow">Studio operations</p>
           <h1>Automation dashboard</h1>
         </div>
-        <a class="secondary-btn" href="{{ url_for('home') }}">Back to website</a>
+        <div class="inline-actions">
+          <a class="secondary-btn" href="{{ url_for('home') }}">Back to website</a>
+          <form method="post" action="{{ url_for('admin_logout') }}">
+            <button class="pill-link" type="submit">Log out</button>
+          </form>
+        </div>
       </header>
 
       <section class="stats-grid">
