@@ -35,9 +35,9 @@ a {
 }
 
 .page-shell {
-  width: min(1120px, calc(100% - 32px));
+  width: min(1480px, calc(100% - 24px));
   margin: 0 auto;
-  padding: 24px 0 48px;
+  padding: 12px 0 48px;
 }
 
 .hero,
@@ -56,8 +56,8 @@ a {
 .hero {
   position: relative;
   overflow: hidden;
-  border-radius: 36px;
-  padding: 36px;
+  border-radius: 30px;
+  padding: 42px 44px;
   background:
     linear-gradient(145deg, rgba(20, 23, 27, 0.98), rgba(33, 35, 39, 0.94)),
     var(--surface);
@@ -160,9 +160,10 @@ h4 {
 }
 
 .hero-grid {
-  grid-template-columns: minmax(0, 1.15fr) minmax(360px, 0.85fr);
+  grid-template-columns: minmax(0, 1.1fr) minmax(420px, 0.9fr);
   align-items: center;
   margin-top: 42px;
+  gap: 34px;
 }
 
 .hero-actions,
@@ -249,7 +250,7 @@ h4 {
 
 .section {
   margin-top: 34px;
-  padding: 24px 8px;
+  padding: 28px 4px;
 }
 
 .class-grid,
@@ -263,6 +264,7 @@ h4 {
 .class-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
 }
 
 .class-card,
@@ -287,7 +289,7 @@ textarea {
 .intro-strip {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
-  gap: 16px;
+  gap: 20px;
   align-items: stretch;
 }
 
@@ -310,7 +312,7 @@ textarea {
 
 .hero-photo-stack {
   position: relative;
-  min-height: 560px;
+  min-height: 620px;
 }
 
 .hero-main-photo,
@@ -324,7 +326,7 @@ textarea {
 }
 
 .hero-main-photo {
-  min-height: 560px;
+  min-height: 620px;
   box-shadow: 0 26px 54px rgba(0, 0, 0, 0.34);
   filter: saturate(0.88) contrast(1.01);
 }
@@ -351,6 +353,7 @@ textarea {
 .feature-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
 }
 
 .single-column {
@@ -406,11 +409,11 @@ textarea {
 .gallery-grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr 0.9fr;
-  gap: 16px;
+  gap: 20px;
 }
 
 .gallery-card {
-  min-height: 280px;
+  min-height: 320px;
   overflow: hidden;
   border-radius: 28px;
   border: 1px solid var(--border);
@@ -419,7 +422,7 @@ textarea {
 }
 
 .gallery-card.tall {
-  min-height: 580px;
+  min-height: 660px;
 }
 
 .gallery-card img {
@@ -466,8 +469,8 @@ textarea {
   margin-top: 20px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-  padding: 30px;
+  gap: 20px;
+  padding: 34px;
   border-radius: 30px;
   background: linear-gradient(180deg, rgba(26, 29, 34, 0.96), rgba(21, 24, 29, 0.96));
 }
@@ -679,5 +682,25 @@ small {
 
   h2 {
     line-height: 1.05;
+  }
+}
+
+@media (min-width: 1280px) {
+  .topbar,
+  .hero-grid,
+  .intro-strip,
+  .section-heading,
+  .class-grid,
+  .gallery-grid,
+  .feature-grid,
+  .booking-form {
+    max-width: 100%;
+  }
+
+  .hero-stats article,
+  .class-card,
+  .feature-grid article,
+  .intro-card {
+    min-height: 100%;
   }
 }
