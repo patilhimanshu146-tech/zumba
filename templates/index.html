@@ -7,135 +7,122 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
   </head>
   <body>
-    <div class="sky sky-one"></div>
-    <div class="sky sky-two"></div>
-    <div class="sky sky-three"></div>
+    <div class="background-orb orb-one"></div>
+    <div class="background-orb orb-two"></div>
+    <div class="background-orb orb-three"></div>
 
-    <main class="page-shell">
-      <section class="hero">
-        <div class="sparkles" aria-hidden="true">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-
-        <div class="hero-copy reveal">
-          <p class="eyebrow">A tiny website from {{ his_name }}</p>
-          <h1>Sorry, Bubu.</h1>
-          <p class="lead">{{ apology_line }}</p>
-          <div class="hero-badges">
-            <span>made for {{ her_name }}</span>
-            <span>with all my baby heart</span>
+    <main class="story-shell">
+      <section class="scene scene-hero reveal">
+        <div class="scene-copy">
+          <p class="eyebrow">{{ scenes[0].eyebrow }}</p>
+          <h1>{{ scenes[0].title }}</h1>
+          <p class="scene-text">{{ scenes[0].text }}</p>
+          <div class="scene-tags">
+            <span>From {{ his_name }}</span>
+            <span>To {{ her_name }}</span>
           </div>
         </div>
-
-        <div class="hero-visual reveal delay-1">
-          <div class="hero-photo photo-tilt-left">
+        <div class="scene-visual">
+          <div class="hero-frame">
             <img
-              src="{{ url_for('static', filename='images/memory-4.jpeg') }}"
-              alt="{{ his_name }} and {{ her_name }} selfie"
+              src="{{ url_for('static', filename=scenes[0].image) }}"
+              alt="{{ his_name }} and {{ her_name }}"
             />
           </div>
-          <div class="hero-photo photo-tilt-right floating-photo-card">
+          <div class="floating-note">Every memory with you still feels like home.</div>
+        </div>
+      </section>
+
+      <section class="scene split-scene reveal delay-1">
+        <div class="scene-panel image-panel tilt-left">
+          <img
+            src="{{ url_for('static', filename=scenes[1].image) }}"
+            alt="{{ his_name }} and {{ her_name }} together"
+          />
+        </div>
+        <div class="scene-panel text-panel">
+          <p class="eyebrow">{{ scenes[1].eyebrow }}</p>
+          <h2>{{ scenes[1].title }}</h2>
+          <p class="scene-text">{{ scenes[1].text }}</p>
+        </div>
+      </section>
+
+      <section class="scene apology-scene reveal delay-2">
+        <div class="apology-backdrop">
+          <img
+            src="{{ url_for('static', filename=scenes[2].image) }}"
+            alt="Memory of {{ his_name }} and {{ her_name }}"
+          />
+        </div>
+        <div class="apology-card">
+          <p class="eyebrow">{{ scenes[2].eyebrow }}</p>
+          <h2>{{ scenes[2].title }}</h2>
+          <p class="scene-text">{{ scenes[2].text }}</p>
+        </div>
+      </section>
+
+      <section class="scene split-scene reverse reveal delay-2">
+        <div class="scene-panel image-panel tilt-right">
+          <img
+            src="{{ url_for('static', filename=scenes[3].image) }}"
+            alt="{{ her_name }} and {{ his_name }} smiling"
+          />
+        </div>
+        <div class="scene-panel text-panel">
+          <p class="eyebrow">{{ scenes[3].eyebrow }}</p>
+          <h2>{{ scenes[3].title }}</h2>
+          <p class="scene-text">{{ scenes[3].text }}</p>
+        </div>
+      </section>
+
+      <section class="scene gallery-scene reveal delay-3">
+        <div class="section-head">
+          <p class="eyebrow">Little Frames</p>
+          <h2>Moments that still stay with me.</h2>
+        </div>
+        <div class="gallery-grid">
+          {% for item in gallery %}
+          <figure class="gallery-card">
             <img
-              src="{{ url_for('static', filename='images/memory-2.jpeg') }}"
-              alt="{{ her_name }} and {{ his_name }} smiling"
-            />
-          </div>
-        </div>
-      </section>
-
-      <section class="train-section reveal delay-1">
-        <div class="section-copy">
-          <p class="eyebrow">Cute express</p>
-          <h2>My sorry train only goes to one place: your heart.</h2>
-        </div>
-        <div class="train-track">
-          <div class="train">
-            <div class="engine">
-              <span class="window"></span>
-              <span class="wheel wheel-a"></span>
-              <span class="wheel wheel-b"></span>
-            </div>
-            <div class="coach">sorry</div>
-            <div class="coach">love</div>
-            <div class="coach">bubu</div>
-          </div>
-        </div>
-      </section>
-
-      <section class="ticket-strip reveal delay-2">
-        <article class="ticket-card">
-          <p class="ticket-label">Mood</p>
-          <h3>Soft baby energy</h3>
-        </article>
-        <article class="ticket-card">
-          <p class="ticket-label">Mission</p>
-          <h3>Make Bubu smile again</h3>
-        </article>
-        <article class="ticket-card">
-          <p class="ticket-label">From</p>
-          <h3>{{ his_name }}</h3>
-        </article>
-      </section>
-
-      <section class="story-section reveal delay-2">
-        <div class="section-copy">
-          <p class="eyebrow">Our tiny movie</p>
-          <h2>Little frames from us.</h2>
-        </div>
-        <div class="story-grid">
-          {% for memory in memories %}
-          <figure class="story-card {% if loop.index in [1, 4] %}tall-card{% endif %}">
-            <img
-              src="{{ url_for('static', filename=memory.image) }}"
+              src="{{ url_for('static', filename=item.image) }}"
               alt="Memory of {{ his_name }} and {{ her_name }}"
             />
-            <figcaption>{{ memory.caption }}</figcaption>
+            <figcaption>{{ item.caption }}</figcaption>
           </figure>
           {% endfor %}
         </div>
       </section>
 
-      <section class="promise-section">
-        <div class="section-copy reveal">
-          <p class="eyebrow">Three pink promises</p>
-          <h2>I know sorry matters more when love becomes gentler.</h2>
+      <section class="scene promise-scene reveal delay-3">
+        <div class="section-head">
+          <p class="eyebrow">What I Promise</p>
+          <h2>If you forgive me, I want my love to feel safer than before.</h2>
         </div>
         <div class="promise-grid">
           {% for promise in promises %}
-          <article class="promise-card reveal delay-{{ loop.index }}">
-            <span class="promise-number">0{{ loop.index }}</span>
+          <article class="promise-card">
+            <span>0{{ loop.index }}</span>
             <p>{{ promise }}</p>
           </article>
           {% endfor %}
         </div>
       </section>
 
-      <section class="final-section reveal delay-3">
-        <div class="final-polaroid">
-          <img
-            src="{{ url_for('static', filename='images/memory-6.jpeg') }}"
-            alt="{{ his_name }} and {{ her_name }} in a mirror memory"
-          />
-          <span>you + me = favorite feeling</span>
-        </div>
-        <div class="final-message">
-          <p class="eyebrow">Last baby note</p>
-          <h2>Babu, please maaf kar na.</h2>
-          <p>
-            I know this little website cannot fix everything by itself, but it is me
-            trying with love. You matter to me so, so much.
+      <section class="scene ending-scene reveal delay-4">
+        <div class="ending-card">
+          <p class="eyebrow">Last Line</p>
+          <h2>Bubu, I just want one more chance to love you more gently.</h2>
+          <p class="scene-text">
+            No matter how pretty this page looks, what matters most is you.
+            I am sorry, I love you, and I hope your heart still finds its way back to me.
           </p>
-          <p class="signature">Always your {{ his_name }}</p>
+          <p class="signature">Always yours, {{ his_name }}</p>
         </div>
       </section>
     </main>
