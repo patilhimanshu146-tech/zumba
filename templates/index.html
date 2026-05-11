@@ -7,19 +7,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
   </head>
   <body>
-    <div class="ambient ambient-one"></div>
-    <div class="ambient ambient-two"></div>
-    <div class="ambient ambient-three"></div>
+    <div class="sky sky-one"></div>
+    <div class="sky sky-two"></div>
+    <div class="sky sky-three"></div>
 
     <main class="page-shell">
       <section class="hero">
-        <div class="floating-hearts" aria-hidden="true">
+        <div class="sparkles" aria-hidden="true">
+          <span></span>
           <span></span>
           <span></span>
           <span></span>
@@ -27,49 +28,73 @@
         </div>
 
         <div class="hero-copy reveal">
-          <p class="eyebrow">A little website from {{ his_name }}</p>
-          <h1>For my Bubu, with all my heart.</h1>
+          <p class="eyebrow">A tiny website from {{ his_name }}</p>
+          <h1>Sorry, Bubu.</h1>
           <p class="lead">{{ apology_line }}</p>
-          <div class="hero-signoff">
-            <span>From {{ his_name }}</span>
-            <span>to {{ her_name }}</span>
+          <div class="hero-badges">
+            <span>made for {{ her_name }}</span>
+            <span>with all my baby heart</span>
           </div>
         </div>
 
         <div class="hero-visual reveal delay-1">
-          <div class="hero-frame">
+          <div class="hero-photo photo-tilt-left">
             <img
-              src="{{ url_for('static', filename='images/memory-1.jpeg') }}"
-              alt="{{ his_name }} and {{ her_name }} together"
+              src="{{ url_for('static', filename='images/memory-4.jpeg') }}"
+              alt="{{ his_name }} and {{ her_name }} selfie"
             />
           </div>
-          <div class="hero-note">
-            <p>Every memory with you is my favorite place.</p>
+          <div class="hero-photo photo-tilt-right floating-photo-card">
+            <img
+              src="{{ url_for('static', filename='images/memory-2.jpeg') }}"
+              alt="{{ her_name }} and {{ his_name }} smiling"
+            />
           </div>
         </div>
       </section>
 
-      <section class="love-strip reveal delay-1">
-        <div class="love-card">
-          <p class="eyebrow">What I wish you feel</p>
-          <h2>Seen. Loved. Safe. Chosen.</h2>
+      <section class="train-section reveal delay-1">
+        <div class="section-copy">
+          <p class="eyebrow">Cute express</p>
+          <h2>My sorry train only goes to one place: your heart.</h2>
         </div>
-        <div class="love-card soft-card">
-          <p>
-            This is not just a sorry. This is me saying your smile matters to me more
-            than my ego ever should.
-          </p>
+        <div class="train-track">
+          <div class="train">
+            <div class="engine">
+              <span class="window"></span>
+              <span class="wheel wheel-a"></span>
+              <span class="wheel wheel-b"></span>
+            </div>
+            <div class="coach">sorry</div>
+            <div class="coach">love</div>
+            <div class="coach">bubu</div>
+          </div>
         </div>
       </section>
 
-      <section class="gallery-section reveal delay-2">
+      <section class="ticket-strip reveal delay-2">
+        <article class="ticket-card">
+          <p class="ticket-label">Mood</p>
+          <h3>Soft baby energy</h3>
+        </article>
+        <article class="ticket-card">
+          <p class="ticket-label">Mission</p>
+          <h3>Make Bubu smile again</h3>
+        </article>
+        <article class="ticket-card">
+          <p class="ticket-label">From</p>
+          <h3>{{ his_name }}</h3>
+        </article>
+      </section>
+
+      <section class="story-section reveal delay-2">
         <div class="section-copy">
-          <p class="eyebrow">Our little moments</p>
-          <h2>Pieces of us I never want to lose.</h2>
+          <p class="eyebrow">Our tiny movie</p>
+          <h2>Little frames from us.</h2>
         </div>
-        <div class="gallery-grid">
+        <div class="story-grid">
           {% for memory in memories %}
-          <figure class="memory-card {% if loop.first %}memory-tall{% endif %}">
+          <figure class="story-card {% if loop.index in [1, 4] %}tall-card{% endif %}">
             <img
               src="{{ url_for('static', filename=memory.image) }}"
               alt="Memory of {{ his_name }} and {{ her_name }}"
@@ -81,9 +106,9 @@
       </section>
 
       <section class="promise-section">
-        <div class="promise-copy reveal">
-          <p class="eyebrow">My promise</p>
-          <h2>I want to love you better, not just say sorry better.</h2>
+        <div class="section-copy reveal">
+          <p class="eyebrow">Three pink promises</p>
+          <h2>I know sorry matters more when love becomes gentler.</h2>
         </div>
         <div class="promise-grid">
           {% for promise in promises %}
@@ -95,21 +120,22 @@
         </div>
       </section>
 
-      <section class="final-section reveal delay-2">
-        <div class="final-photo">
+      <section class="final-section reveal delay-3">
+        <div class="final-polaroid">
           <img
-            src="{{ url_for('static', filename='images/memory-5.jpeg') }}"
-            alt="{{ her_name }} and {{ his_name }} smiling together"
+            src="{{ url_for('static', filename='images/memory-6.jpeg') }}"
+            alt="{{ his_name }} and {{ her_name }} in a mirror memory"
           />
+          <span>you + me = favorite feeling</span>
         </div>
         <div class="final-message">
-          <p class="eyebrow">Last thing</p>
-          <h2>Bubu, please maaf kar na.</h2>
+          <p class="eyebrow">Last baby note</p>
+          <h2>Babu, please maaf kar na.</h2>
           <p>
-            No fancy line can matter more than your heart. I just want you to know
-            that I love you, I miss your softness, and I really am sorry.
+            I know this little website cannot fix everything by itself, but it is me
+            trying with love. You matter to me so, so much.
           </p>
-          <p class="signature">Forever yours, {{ his_name }}</p>
+          <p class="signature">Always your {{ his_name }}</p>
         </div>
       </section>
     </main>
