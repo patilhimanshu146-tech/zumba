@@ -72,6 +72,71 @@ img {
   animation-delay: 2.4s;
 }
 
+.petal,
+.light-beam {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.petal {
+  width: 20px;
+  height: 28px;
+  background: linear-gradient(180deg, rgba(255, 167, 201, 0.75), rgba(255, 123, 166, 0.4));
+  border-radius: 18px 18px 18px 2px;
+  opacity: 0.65;
+  filter: blur(0.2px);
+  animation: fallPetal 18s linear infinite;
+}
+
+.petal-one {
+  top: -8%;
+  left: 14%;
+  animation-delay: 0s;
+}
+
+.petal-two {
+  top: -12%;
+  left: 46%;
+  width: 16px;
+  height: 24px;
+  animation-delay: 4s;
+}
+
+.petal-three {
+  top: -10%;
+  right: 18%;
+  animation-delay: 7s;
+}
+
+.petal-four {
+  top: -14%;
+  right: 34%;
+  width: 14px;
+  height: 20px;
+  animation-delay: 10s;
+}
+
+.light-beam {
+  top: -10%;
+  width: 320px;
+  height: 130vh;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent 60%);
+  transform: rotate(14deg);
+  filter: blur(24px);
+  opacity: 0.22;
+  animation: beamShift 12s ease-in-out infinite alternate;
+}
+
+.beam-one {
+  left: 6%;
+}
+
+.beam-two {
+  right: 10%;
+  animation-delay: 2.2s;
+}
+
 .story-shell {
   position: relative;
   z-index: 1;
@@ -164,9 +229,22 @@ h2 {
   position: relative;
 }
 
+.hero-glow {
+  position: absolute;
+  inset: auto -8% -10% auto;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 123, 166, 0.22), transparent 70%);
+  filter: blur(8px);
+  animation: pulseGlow 4.8s ease-in-out infinite;
+}
+
 .hero-frame {
   overflow: hidden;
   border-radius: 32px;
+  transform: translateY(0);
+  animation: floatCard 6.6s ease-in-out infinite;
 }
 
 .hero-frame img {
@@ -183,6 +261,7 @@ h2 {
   border-radius: 20px;
   background: rgba(22, 18, 27, 0.84);
   border: 1px solid var(--border);
+  animation: floatNote 5.2s ease-in-out infinite;
 }
 
 .split-scene {
@@ -203,12 +282,14 @@ h2 {
 
 .image-panel {
   overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .image-panel img {
   border-radius: 24px;
   aspect-ratio: 4 / 5;
   object-fit: cover;
+  transition: transform 1.4s ease;
 }
 
 .tilt-left {
@@ -221,6 +302,22 @@ h2 {
 
 .text-panel {
   padding: 34px;
+}
+
+.split-scene:hover .image-panel {
+  transform: translateY(-8px) rotate(var(--hover-tilt, 0deg));
+}
+
+.split-scene:hover .image-panel img {
+  transform: scale(1.05);
+}
+
+.split-scene .tilt-left {
+  --hover-tilt: -1.2deg;
+}
+
+.split-scene .tilt-right {
+  --hover-tilt: 1.2deg;
 }
 
 .apology-scene {
@@ -247,6 +344,47 @@ h2 {
 .apology-backdrop img {
   height: 100%;
   object-fit: cover;
+  transform: scale(1.05);
+  animation: slowZoom 12s ease-in-out infinite alternate;
+}
+
+.apology-stars span {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+  animation: starBlink 2.4s ease-in-out infinite;
+}
+
+.apology-stars span:nth-child(1) {
+  top: 18%;
+  left: 18%;
+}
+
+.apology-stars span:nth-child(2) {
+  top: 24%;
+  right: 22%;
+  animation-delay: 0.4s;
+}
+
+.apology-stars span:nth-child(3) {
+  bottom: 24%;
+  left: 24%;
+  animation-delay: 0.9s;
+}
+
+.apology-stars span:nth-child(4) {
+  bottom: 18%;
+  right: 16%;
+  animation-delay: 1.4s;
+}
+
+.apology-stars span:nth-child(5) {
+  top: 44%;
+  left: 50%;
+  animation-delay: 1.9s;
 }
 
 .apology-card {
@@ -256,6 +394,7 @@ h2 {
   padding: 40px;
   border-radius: 34px;
   text-align: center;
+  animation: cardBreath 5s ease-in-out infinite;
 }
 
 .section-head {
@@ -276,16 +415,27 @@ h2 {
   overflow: hidden;
   padding: 14px;
   border-radius: 28px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .gallery-card img {
   border-radius: 22px;
   aspect-ratio: 4 / 5;
   object-fit: cover;
+  transition: transform 1.2s ease, filter 1.2s ease;
 }
 
 .gallery-card figcaption {
   margin: 14px 4px 6px;
+}
+
+.gallery-card:hover {
+  transform: translateY(-10px);
+}
+
+.gallery-card:hover img {
+  transform: scale(1.06);
+  filter: saturate(1.08);
 }
 
 .promise-grid {
@@ -296,6 +446,7 @@ h2 {
   min-height: 100%;
   padding: 26px;
   border-radius: 28px;
+  transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .promise-card span {
@@ -307,6 +458,11 @@ h2 {
   letter-spacing: 0.16em;
 }
 
+.promise-card:hover {
+  transform: translateY(-8px);
+  background: var(--surface-strong);
+}
+
 .ending-scene {
   display: grid;
 }
@@ -315,6 +471,19 @@ h2 {
   max-width: 880px;
   padding: 36px;
   border-radius: 34px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ending-card::before {
+  content: "";
+  position: absolute;
+  inset: -30% auto auto -10%;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 123, 166, 0.12), transparent 68%);
+  animation: pulseGlow 5.8s ease-in-out infinite;
 }
 
 .signature {
@@ -361,6 +530,87 @@ h2 {
   }
 }
 
+@keyframes fallPetal {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(120px, 120vh, 0) rotate(320deg);
+  }
+}
+
+@keyframes beamShift {
+  from {
+    transform: rotate(14deg) translateX(0);
+  }
+  to {
+    transform: rotate(18deg) translateX(40px);
+  }
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    transform: scale(0.92);
+    opacity: 0.72;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes floatCard {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes floatNote {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-1deg);
+  }
+}
+
+@keyframes slowZoom {
+  from {
+    transform: scale(1.04);
+  }
+  to {
+    transform: scale(1.12);
+  }
+}
+
+@keyframes starBlink {
+  0%,
+  100% {
+    transform: scale(0.7);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 1;
+  }
+}
+
+@keyframes cardBreath {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
 @media (max-width: 980px) {
   .story-shell {
     width: min(100%, calc(100% - 22px));
@@ -390,5 +640,10 @@ h2 {
     position: static;
     margin-top: 14px;
     max-width: none;
+  }
+
+  .petal,
+  .light-beam {
+    display: none;
   }
 }

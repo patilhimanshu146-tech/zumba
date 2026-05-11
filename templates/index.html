@@ -16,6 +16,12 @@
     <div class="background-orb orb-one"></div>
     <div class="background-orb orb-two"></div>
     <div class="background-orb orb-three"></div>
+    <div class="petal petal-one"></div>
+    <div class="petal petal-two"></div>
+    <div class="petal petal-three"></div>
+    <div class="petal petal-four"></div>
+    <div class="light-beam beam-one"></div>
+    <div class="light-beam beam-two"></div>
 
     <main class="story-shell">
       <section class="scene scene-hero reveal">
@@ -29,6 +35,7 @@
           </div>
         </div>
         <div class="scene-visual">
+          <div class="hero-glow"></div>
           <div class="hero-frame">
             <img
               src="{{ url_for('static', filename=scenes[0].image) }}"
@@ -59,6 +66,13 @@
             src="{{ url_for('static', filename=scenes[2].image) }}"
             alt="Memory of {{ his_name }} and {{ her_name }}"
           />
+        </div>
+        <div class="apology-stars" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
         <div class="apology-card">
           <p class="eyebrow">{{ scenes[2].eyebrow }}</p>
