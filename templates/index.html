@@ -3,214 +3,115 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ studio_name }} | Zumba Classes</title>
+    <title>{{ site_title }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
   </head>
   <body>
-    <div class="page-shell">
-      <header class="hero">
-        <nav class="topbar">
-          <div>
-            <p class="eyebrow">Boutique movement studio</p>
-            <h1>{{ studio_name }}</h1>
-          </div>
-          <a class="pill-link" href="{{ url_for('admin_login') }}">
-            {% if admin_logged_in %}Open Dashboard{% else %}Staff Login{% endif %}
-          </a>
-        </nav>
-        <div class="hero-grid">
-          <section class="hero-copy">
-            <p class="badge">Move with rhythm</p>
-            <h2>Zumba classes with beautiful energy, strong rhythm, and a studio feel.</h2>
-            <p class="lead">
-              High-energy sessions, confident coaching, and a space that makes
-              movement feel effortless.
-            </p>
-            <div class="hero-actions">
-              <a class="primary-btn" href="#booking">Book a trial class</a>
-              <a class="secondary-btn" href="#schedule">See the class schedule</a>
-            </div>
-            <div class="hero-stats">
-              <article>
-                <strong>3</strong>
-                <span>Signature weekly formats</span>
-              </article>
-              <article>
-                <strong>{{ booking_count }}</strong>
-                <span>Trial bookings</span>
-              </article>
-              <article>
-                <strong>{{ upcoming_trials }}</strong>
-                <span>Upcoming sessions</span>
-              </article>
-            </div>
-          </section>
-          <section class="hero-visual">
-            <div class="hero-photo-stack">
-              <img
-                class="hero-main-photo"
-                src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1200&q=80"
-                alt="Premium group dance fitness class"
-              />
-              <img
-                class="hero-floating-photo"
-                src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=900&q=80"
-                alt="Studio movement session"
-              />
-            </div>
-            <div class="hero-card">
-              <p class="card-label">Studio feel</p>
-              <ul>
-                <li>Bold playlists</li>
-                <li>Beautiful movement</li>
-                <li>Feel-good cardio</li>
-              </ul>
-            </div>
-          </section>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+    <div class="ambient ambient-three"></div>
+
+    <main class="page-shell">
+      <section class="hero">
+        <div class="floating-hearts" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
-      </header>
 
-      <main>
-        <section class="section intro-strip">
-          <div class="intro-card">
-            <p class="eyebrow">The mood</p>
-            <h3>Elegant, uplifting, and full of movement.</h3>
+        <div class="hero-copy reveal">
+          <p class="eyebrow">A little website from {{ his_name }}</p>
+          <h1>For my Bubu, with all my heart.</h1>
+          <p class="lead">{{ apology_line }}</p>
+          <div class="hero-signoff">
+            <span>From {{ his_name }}</span>
+            <span>to {{ her_name }}</span>
           </div>
-          <div class="intro-card">
-            <p>A little sweat, a lot of rhythm, and the kind of class you look forward to all week.</p>
-          </div>
-        </section>
+        </div>
 
-        <section class="section" id="schedule">
-          <div class="section-heading">
-            <p class="eyebrow">Weekly schedule</p>
-            <h3>Find your class.</h3>
+        <div class="hero-visual reveal delay-1">
+          <div class="hero-frame">
+            <img
+              src="{{ url_for('static', filename='images/memory-1.jpeg') }}"
+              alt="{{ his_name }} and {{ her_name }} together"
+            />
           </div>
-          <div class="class-grid">
-            {% for item in classes %}
-            <article class="class-card">
-              <p class="class-day">{{ item.day }}</p>
-              <h4>{{ item.title }}</h4>
-              <p>{{ item.time }}</p>
-              <p>{{ item.level }}</p>
-              <span>Coach {{ item.coach }} · {{ item.capacity }} spots</span>
-            </article>
-            {% endfor %}
+          <div class="hero-note">
+            <p>Every memory with you is my favorite place.</p>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section class="section vibe-section">
-          <div class="section-heading">
-            <p class="eyebrow">Gallery</p>
-            <h3>The feel of the studio.</h3>
-          </div>
-          <div class="gallery-grid">
-            <article class="gallery-card tall">
-              <img
-                src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1200&q=80"
-                alt="Professional dance fitness class"
-              />
-            </article>
-            <article class="gallery-card">
-              <img
-                src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1200&q=80"
-                alt="Studio training under dramatic lighting"
-              />
-            </article>
-            <article class="gallery-card">
-              <img
-                src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1200&q=80"
-                alt="Elegant movement session"
-              />
-            </article>
-          </div>
-        </section>
+      <section class="love-strip reveal delay-1">
+        <div class="love-card">
+          <p class="eyebrow">What I wish you feel</p>
+          <h2>Seen. Loved. Safe. Chosen.</h2>
+        </div>
+        <div class="love-card soft-card">
+          <p>
+            This is not just a sorry. This is me saying your smile matters to me more
+            than my ego ever should.
+          </p>
+        </div>
+      </section>
 
-        <section class="section spotlight">
-          <div>
-            <p class="eyebrow">Why people love it</p>
-            <h3>Simple reasons to keep coming back.</h3>
-          </div>
-          <div class="feature-grid">
-            <article>
-              <h4>Beautiful playlists</h4>
-              <p>Every class feels lively, polished, and easy to move with.</p>
-            </article>
-            <article>
-              <h4>Supportive coaching</h4>
-              <p>Friendly guidance that helps beginners feel comfortable from the first session.</p>
-            </article>
-            <article>
-              <h4>Feel-good energy</h4>
-              <p>Cardio that feels more like a release than a routine.</p>
-            </article>
-          </div>
-        </section>
+      <section class="gallery-section reveal delay-2">
+        <div class="section-copy">
+          <p class="eyebrow">Our little moments</p>
+          <h2>Pieces of us I never want to lose.</h2>
+        </div>
+        <div class="gallery-grid">
+          {% for memory in memories %}
+          <figure class="memory-card {% if loop.first %}memory-tall{% endif %}">
+            <img
+              src="{{ url_for('static', filename=memory.image) }}"
+              alt="Memory of {{ his_name }} and {{ her_name }}"
+            />
+            <figcaption>{{ memory.caption }}</figcaption>
+          </figure>
+          {% endfor %}
+        </div>
+      </section>
 
-        <section class="section booking-section" id="booking">
-          <div class="section-heading">
-            <p class="eyebrow">Reserve your place</p>
-            <h3>Book a trial class</h3>
-          </div>
+      <section class="promise-section">
+        <div class="promise-copy reveal">
+          <p class="eyebrow">My promise</p>
+          <h2>I want to love you better, not just say sorry better.</h2>
+        </div>
+        <div class="promise-grid">
+          {% for promise in promises %}
+          <article class="promise-card reveal delay-{{ loop.index }}">
+            <span class="promise-number">0{{ loop.index }}</span>
+            <p>{{ promise }}</p>
+          </article>
+          {% endfor %}
+        </div>
+      </section>
 
-          {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-              <div class="flash-stack">
-                {% for category, message in messages %}
-                  <div class="flash {{ category }}">{{ message }}</div>
-                {% endfor %}
-              </div>
-            {% endif %}
-          {% endwith %}
-
-          <form class="booking-form" method="post" action="{{ url_for('book_class') }}">
-            <div class="form-intro full-span">
-              <p class="card-label">Trial booking</p>
-              <p>Your first class starts here.</p>
-            </div>
-            <label>
-              Full name
-              <input type="text" name="name" placeholder="Your name" required />
-            </label>
-            <label>
-              Email
-              <input type="email" name="email" placeholder="you@example.com" required />
-            </label>
-            <label>
-              Phone
-              <input type="tel" name="phone" placeholder="+91" required />
-            </label>
-            <label>
-              Preferred class
-              <select name="class_name" required>
-                <option value="">Choose a class</option>
-                {% for item in classes %}
-                <option value="{{ item.title }}">{{ item.title }}</option>
-                {% endfor %}
-              </select>
-            </label>
-            <label>
-              Preferred date
-              <input type="date" name="preferred_date" required />
-            </label>
-            <label class="full-span">
-              Goals or notes
-              <textarea
-                name="message"
-                rows="4"
-                placeholder="Anything you'd like us to know"
-              ></textarea>
-            </label>
-            <button class="primary-btn full-span" type="submit">Request my trial</button>
-          </form>
-        </section>
-      </main>
-    </div>
+      <section class="final-section reveal delay-2">
+        <div class="final-photo">
+          <img
+            src="{{ url_for('static', filename='images/memory-5.jpeg') }}"
+            alt="{{ her_name }} and {{ his_name }} smiling together"
+          />
+        </div>
+        <div class="final-message">
+          <p class="eyebrow">Last thing</p>
+          <h2>Bubu, please maaf kar na.</h2>
+          <p>
+            No fancy line can matter more than your heart. I just want you to know
+            that I love you, I miss your softness, and I really am sorry.
+          </p>
+          <p class="signature">Forever yours, {{ his_name }}</p>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
